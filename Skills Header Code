@@ -3,9 +3,9 @@ data = {
     'Software/Subject': [
         'IBM Cognos Analytics', 'IBM Watson Studio', 'Jupyter Notebooks', 
         'Python', 'Excel', 'Powerpoint', 'Akkio', 'ChartPixel', 
-        'Accounting', 'Economics', 'Budgeting', 'Financial Planning'
+        'Accounting', 'Economics', 'Budgeting', 'Financial Planning', 'Tableau'
     ],
-    'Rating': [5, 4, 3, 3, 5, 5, 3, 3, 4, 4, 5, 5]
+    'Rating': [5, 4, 3, 3, 5, 5, 3, 3, 4, 4, 5, 5, 4]
 }
 
 df = pd.DataFrame(data)
