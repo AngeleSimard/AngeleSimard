@@ -9,21 +9,10 @@ data = {
 }
 
 df = pd.DataFrame(data)
-print(df)
+df
 
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-
-data_dict = df.set_index('Software/Subject')['Rating'].to_dict()
-
-# Create word cloud
-wordcloud = WordCloud(width=800, height=400, background_color='white', colormap='Blues').generate_from_frequencies(data_dict)
-
-# Display the word cloud
-plt.figure(figsize=(10, 8))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis('off')
-plt.show()
 
 data2 = {
     'Skill': [
@@ -34,46 +23,13 @@ data2 = {
 }
 
 df2 = pd.DataFrame(data2)
-print(df2)
+df2
 
 %pip install seaborn
 %pip install squarify
 import seaborn as sns
 import squarify
 import textwrap
-
-# Create DataFrame
-df2 = pd.DataFrame(data2)
-
-# Function to wrap text
-def wrap_text(text, width):
-    return "\n".join(textwrap.wrap(text, width))
-
-# Wrap the labels
-df2['Wrapped Skill'] = df2['Skill'].apply(lambda x: wrap_text(x, 15))
-
-# Create a list of colors with different shades of blue
-colors = plt.cm.Blues([1.2, 0.4, 0.6, 0.8, 1.0, 0.5])
-
-# Create the treemap
-# Create the treemap with wrapped text
-plt.figure(figsize=(12, 8))
-squarify.plot(
-    sizes=df2['Rating'], 
-    label=df2['Wrapped Skill'], 
-    alpha=.8, 
-    color=colors,
-    text_kwargs={'fontsize': 20, 'color': 'white', 'fontweight': 'bold'},
-    ec='black'
-)
-plt.axis('off')
-plt.show()
-
-# Create DataFrame df
-df = pd.DataFrame(data)
-
-# Create DataFrame df2
-df2 = pd.DataFrame(data2)
 
 # Function to wrap text
 def wrap_text(text, width):
