@@ -2,10 +2,10 @@ import pandas as pd
 data = {
     'Software/Subject': [
         'IBM Cognos Analytics', 'IBM Watson Studio', 'Jupyter Notebooks', 
-        'Python', 'Excel', 'Powerpoint', 'Akkio', 'ChartPixel', 
+        'Python', 'Excel', 'Powerpoint', 
         'Accounting', 'Economics', 'Budgeting', 'Financial Planning', 'Tableau'
     ],
-    'Rating': [5, 4, 3, 3, 5, 5, 3, 3, 4, 4, 5, 5, 4]
+    'Rating': [5, 4, 3, 3, 5, 5, 4, 4, 5, 5, 4]
 }
 
 df = pd.DataFrame(data)
@@ -16,10 +16,10 @@ import matplotlib.pyplot as plt
 
 data2 = {
     'Skill': [
-        'Problem-solving', 'Analytical skills', 'Research and preparation', 
+        'Problem-solving', 'Analytical skills', 'Research and preparation', 'Intellectual agility', 'Attention to detail',
         'Goal oriented', 'Thrives in challenges', 'Bilingual                 English    French'
     ],
-    'Rating': [5, 5, 5, 5, 4, 4]
+    'Rating': [5, 5, 5, 5, 5, 5, 4, 4]
 }
 
 df2 = pd.DataFrame(data2)
@@ -43,10 +43,10 @@ colors = plt.cm.Blues([1.2, 0.4, 0.6, 0.8, 1.0, 0.5])
 
 # Create word cloud from df
 data_dict = df.set_index('Software/Subject')['Rating'].to_dict()
-wordcloud = WordCloud(width=800, height=600, background_color='white', colormap='Blues').generate_from_frequencies(data_dict)
+wordcloud = WordCloud(width=800, height=600, background_color='white', colormap='Blues', min_font_size=10).generate_from_frequencies(data_dict)
 
 # Create the figure and subplots
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 6))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 6), gridspec_kw={'wspace':0.1})
 
 # Plot word cloud
 ax1.imshow(wordcloud, interpolation='bilinear')
