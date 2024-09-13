@@ -1,0 +1,41 @@
+from matplotlib.colors import LinearSegmentedColormap
+
+# Banner for LinkedIn
+# Wrap the labels for df2
+df2['Wrapped Skill'] = df2['Skill'].apply(lambda x: wrap_text(x, 15))
+
+# Create a list of colors with different shades of blue
+colors = plt.cm.Blues([1.2, 0.4, 0.6, 0.8, 1.0, 0.5])
+
+# Create a custom colormap with a minimum shade
+colorsA = ['#08306b', '#08519c', '#2171b5', '#4292c6', '#6baed6', '#9ecae1']
+custom_cmap = LinearSegmentedColormap.from_list('custom_blue', colorsA)
+
+# Create word cloud from df with a darker color palette
+data_dict = df.set_index('Software/Subject')['Rating'].to_dict()
+wordcloud = WordCloud(width=800, height=600, background_color='white', colormap=custom_cmap, min_font_size=10).generate_from_frequencies(data_dict)
+
+# Create the figure and subplots
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(20, 4.5), gridspec_kw={'width_ratios': [1, 2, 2.2], 'wspace': 0.2})
+ax1.axis('off')
+
+# Create blank space for axis 1
+ax1.axis('off')
+
+# Plot word cloud
+ax2.imshow(wordcloud, interpolation='bilinear')
+ax2.axis('off')
+
+# Plot treemap with wrapped text, borders, and bold text
+squarify.plot(
+    sizes=df2['Rating'], 
+    label=df2['Wrapped Skill'], 
+    alpha=.8, 
+    color=colors,
+    text_kwargs={'fontsize': 13, 'color':'white', 'fontweight': 'bold'},  # Bold the text here
+    ec='black',  # Add borders with black color
+    ax=ax3
+)
+ax3.axis('off')
+
+plt.show()
